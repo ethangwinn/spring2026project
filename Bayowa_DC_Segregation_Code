@@ -1,0 +1,196 @@
+library(tidyverse)
+library(janitor)
+library(dplyr)
+```{r}
+# 1. Read 1960 Data
+race_1960_raw <- read_csv("Data_raw/nhgis0002_ds92_1960_tract.csv") %>%
+  clean_names()
+
+# 2. Filter and Calculate Percentages
+race_1960_dc <- race_1960_raw %>%
+  # FIPS 11 is DC; also checking 'state' column for safety if available
+  filter(statea == "11" | state == "District of Columbia") %>% 
+  mutate(
+    nhgiscode = gisjoin,
+    year = 1960L,
+    # Ensure tracta is a 4-digit string with leading zeros
+    tracta_clean = str_pad(as.character(as.integer(tracta)), width = 4, pad = "0"),
+    total_population = b9t001,
+    black_population = b7b003, # Non-white proxy
+    black_percent = black_population / total_population,
+    tract_name = areaname
+  ) %>%
+  select(
+    nhgiscode, 
+    tracta = tracta_clean, 
+    tract_name, 
+    year, 
+    black_population,
+    total_population, 
+    black_percent
+  )
+
+# View result
+View(race_1960_dc)
+```
+
+
+```{r}
+
+race_raw <- read_csv("Data_raw/nhgis0003_ts_nominal_tract.csv") %>%
+  clean_names()
+
+race_dc <- race_raw %>%
+  filter(state == "District of Columbia")
+
+# Optimized selection using starts_with to keep it clean
+race_dc_selected <- race_dc %>%
+  select(
+    nhgiscode,
+    tracta,
+    starts_with("name"),
+    starts_with("b18aa"), # White
+    starts_with("b18ab"), # Black
+    starts_with("b18ac"), # AI/AN
+    starts_with("b18ad"), # Asian / PI / Other
+    starts_with("b18ae")  # Two or more
+  )
+
+
+```
+
+
+
+```{r}
+#Pivot to long format
+race_long <- race_dc_selected %>%
+  pivot_longer(
+    cols = starts_with("b18"),
+    names_to = "variable",
+    values_to = "population"
+  ) %>%
+  mutate(
+    year = as.integer(str_extract(variable, "\\d{4}")),
+    race = case_when(
+      str_detect(variable, "b18aa") ~ "White",
+      str_detect(variable, "b18ab") ~ "Black",
+      str_detect(variable, "b18ac") ~ "American Indian or Alaska Native",
+      str_detect(variable, "b18ad") ~ "Asian / Pacific Islander / Other",
+      str_detect(variable, "b18ae") ~ "Two or More Races"
+    )
+  )
+
+# Total population per tract per year
+dc_total_population_clean <- race_long %>%
+  group_by(nhgiscode, tracta, year) %>%
+  summarise(
+    total_population = sum(population, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# Specific Black population subset with dynamic name attachment
+dc_black_population_clean <- race_long %>%
+  filter(race == "Black") %>%
+  mutate(
+    tract_name = case_when(
+      year == 1970 ~ name1970,
+      year == 1980 ~ name1980,
+      year == 1990 ~ name1990,
+      year == 2000 ~ name2000,
+      year == 2010 ~ name2010,
+      year == 2020 ~ name2020,
+      TRUE ~ NA_character_
+    )
+  ) %>%
+  select(
+    nhgiscode,
+    tracta,
+    tract_name,
+    year,
+    black_population = population
+  ) %>%
+  filter(!is.na(black_population))
+```
+
+
+```{r}
+dc_black_percent <- dc_black_population_clean %>%
+  left_join(
+    dc_total_population_clean,
+    by = c("nhgiscode", "tracta", "year")
+  ) %>%
+  mutate(
+    # Handle potential division by zero just in case
+    black_percent = if_else(total_population > 0, black_population / total_population, 0)
+  )
+
+# Output check
+if(!dir.exists("Cleaned_data_EDJones")) dir.create("Cleaned_data_EDJones")
+write_csv(dc_black_percent, "Cleaned_data_EDJones/dc_black_population_percentage_1970_2020.csv")
+
+View(dc_black_percent)
+
+```
+
+
+```{r}
+# Bind the 1960 proxy data with the 1970-2020 data
+dc_black_percent_full <- bind_rows(
+  race_1960_dc,
+  dc_black_percent        
+) %>%
+  arrange(nhgiscode, year)
+
+write_csv(dc_black_percent_full, "Cleaned_data_EDJones/dc_black_population_percentage_1960_2020.csv")
+
+# Final verification
+glimpse(dc_black_percent_full)
+```
+
+
+```{r}
+dc_black_change <- dc_black_percent_full %>%
+  arrange(nhgiscode, year) %>%
+  group_by(nhgiscode) %>%
+  mutate(
+    black_pop_change = black_population - lag(black_population),
+    # Use if_else to prevent division by zero or NA
+    black_pop_pct_change = if_else(
+      condition = lag(black_population) > 0, 
+      true = (black_pop_change / lag(black_population)) * 100, 
+      false = NA_real_
+    )
+  ) %>%
+  ungroup()
+
+# Exporting the change data
+write_csv(dc_black_change, "Cleaned_data_EDJones/dc_black_population_change_1960_2020.csv")
+
+View(dc_black_change)
+```
+
+
+```{r}
+dc_black_segregation <- dc_black_percent_full %>%
+  mutate(
+    segregation_category = case_when(
+      black_percent < 0.25 ~ "0–25%",
+      black_percent >= 0.25 & black_percent < 0.50 ~ "25–50%",
+      black_percent >= 0.50 & black_percent < 0.75 ~ "50–75%",
+      black_percent >= 0.75 ~ "75–100%",
+      TRUE ~ "Unknown"
+    ),
+    # Converting to factor so it displays in order on charts/legends
+    segregation_category = factor(
+      segregation_category, 
+      levels = c("0–25%", "25–50%", "50–75%", "75–100%")
+    )
+  )
+
+# Exporting the segregation data
+write_csv(dc_black_segregation, "Cleaned_data_EDJones/dc_black_segregation_categories.csv")
+
+# Quick check on category counts
+table(dc_black_segregation$segregation_category, useNA = "always")
+View(dc_black_segregation)
+```

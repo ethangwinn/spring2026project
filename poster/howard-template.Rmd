@@ -2,15 +2,19 @@
 title: "White Flight and the Persistence of Residential Segregation in Mobile County, AL"
 author: 
   - name: Ethan Gwinn
-    affil: 1
+    affil: 1, 2
   - name: Nathan Alexander, PhD
-    affil: 2
+    affil: 3, 4
 
 affiliation:
   - num: 1
-    address: "Department, College or University Name"
+    address: "Department of Sociology"
   - num: 2
-    address: "Department, College or University Name"
+    address: "Department of Economics"
+  - num: 3
+    address: "Department of Curriculum and Instruction"
+  - num: 4
+    address: "Center for Applied Data Science and Analytics (CADSA)"
 
 column_numbers: 4
 

@@ -38,8 +38,11 @@
 }
 
 /* --- Logos --------------------------------------------------- */
-.logo-left img,
+.logo-left img {
+  max-height: 150px !important;
+  width: 150px !important;
+}
 .logo-right img {
-  max-height: 12in;
-  width: auto;
+  max-height: 150px !important;
+  width: 150px !important;
 }

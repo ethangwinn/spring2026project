@@ -83,12 +83,14 @@ library(here)
 here::i_am("howard-template.Rmd") # if you change the name of your file, update this
 ```
 
+```{=html}
 <style>
 @page {
 size: 48in 36in;
 margin: 2in;
 }
 </style>
+```
 
 ```{r, eval=F, include=FALSE}
 # To render both HTML and PDF versions:
@@ -128,14 +130,14 @@ This study analyzes demographic shifts in Mobile County, AL from 1960 to the pre
 Before 1950, racial classification was determined by census enumerators using externally imposed categories rooted in "color," ancestry, and racial hierarchy (e.g., White, Black, Mulatto). These systems reflected the “one-drop rule” and did not rely on self-identification.
 
 | Decade | Enumeration Method | Key Changes Relevant to Study |
-|--------|------------------|-------------------------------|
-| 1950   | Enumerator       | Race assigned by enumerators; “Negro” used; no “Black” category |
-| 1960   | Mixed (Enumerator + Self-ID) | Transitional system; partial shift toward self-identification |
-| 1970   | Self-identification | First full use of self-identification; “Black” reintroduced |
-| 1980   | Self-identification | Expanded racial categories; terminology reordered (“Black or Negro”) |
-| 1990   | Self-identification | “Race” replaces “Color or Race”; Asian/Pacific categories grouped |
-| 2000   | Self-identification (multi-race allowed) | Respondents can select multiple races; “African American” added |
-| 2010   | Self-identification (multi-race) | Same categories as 2000; clarified race vs. Hispanic origin |
+|----------------|--------------------|------------------------------------|
+| 1950 | Enumerator | Race assigned by enumerators; “Negro” used; no “Black” category |
+| 1960 | Mixed (Enumerator + Self-ID) | Transitional system; partial shift toward self-identification |
+| 1970 | Self-identification | First full use of self-identification; “Black” reintroduced |
+| 1980 | Self-identification | Expanded racial categories; terminology reordered (“Black or Negro”) |
+| 1990 | Self-identification | “Race” replaces “Color or Race”; Asian/Pacific categories grouped |
+| 2000 | Self-identification (multi-race allowed) | Respondents can select multiple races; “African American” added |
+| 2010 | Self-identification (multi-race) | Same categories as 2000; clarified race vs. Hispanic origin |
 
 Because racial classification methods and terminology changed over time—particularly the shift from enumerator-assigned race to self-identification—this study standardizes categories into “Black” and “White” to enable longitudinal comparison across census decades.
 
@@ -145,9 +147,9 @@ Because racial classification methods and terminology changed over time—partic
 
 ## Model
 
-\[
+$$
 D = \frac{1}{2} \sum_{i=1}^{n} \left| \frac{b_i}{B} - \frac{w_i}{W} \right|
-\]
+$$
 
 where $b_i$ is the population of Black households in neighborhood $i$, $B$ is the total Black population in the geographical area, $w_i$ is the population of non-Black households in neighborhood $i$, $W$ is the total non-Black population in the geographical area.
 
@@ -161,7 +163,7 @@ This study uses historical census data from the U.S. Census Bureau to examine ch
 
 # Findings
 
-![](img/1980-2010-seg.png){width=90%}
+![](img/1980-2010-seg.png){width="90%"}
 
 ```{r, include=F, warning=F, messages=F}
 library(tidycensus)
@@ -258,13 +260,6 @@ ggplot(race_2020) +
   )
 ```
 
-
-```{r}
-
-
-```
-
-
 # Discussion
 
 # Conclusion
@@ -275,5 +270,5 @@ This work was supported by funding from the Alfred P. Sloan Foundation (Grant 20
 
 # References
 
-![]("img/poster qr code.png"){width=90%}
+![](img/qr-code.png){width=90%}
 

@@ -1,20 +1,22 @@
 ---
-title: "White Flight and the Persistence of Residential Segregation in Mobile County, AL"
+title: "White Flight and Residential Segregation in Mobile County, AL: Aligning Historical Indicators and U.S. Census Bureau Data to Model Dissimilaritiy"
 author: 
   - name: Ethan Gwinn
-    affil: 1, 2
+    affil: 1, 2, 5
   - name: Nathan Alexander, PhD
-    affil: 3, 4
+    affil: 3, 4, 5
 
 affiliation:
   - num: 1
-    address: "Department of Sociology"
+    address: "Department of Sociology, College of Arts and Sciences"
   - num: 2
-    address: "Department of Economics"
+    address: "Department of Economics, College of Arts and Sciences"
   - num: 3
-    address: "Department of Curriculum and Instruction"
+    address: "Department of Curriculum and Instruction, School of Education"
   - num: 4
-    address: "Center for Applied Data Science and Analytics (CADSA)"
+    address: "Center for Applied Data Science and Analytics (CADSA), Graduate School"
+  - num: 5
+    address: "Quantitaive Histories Workshop"
 
 column_numbers: 4
 
@@ -52,7 +54,8 @@ knitr::opts_chunk$set(
   echo = FALSE,
  # cache = FALSE,
   fig.width = 3,
-  fig.height = 2,
+  fig.height = 2,  
+  fig.env="figure",
   dpi = 300
 )
 
@@ -63,6 +66,14 @@ if (!requireNamespace("posterdown", quietly = TRUE)) {
 if (!requireNamespace("pagedown", quietly = TRUE)) {
   pak::pak("rstudio/pagedown")
 }
+
+library(tidycensus)
+library(dplyr)
+library(ggplot2)
+library(sf)
+library(viridis)
+library(scales)
+library(readr)
 
 library(posterdown)
 library(tidyverse)
@@ -95,6 +106,7 @@ pagedown::chrome_print(
 
 # Abstract
 
+<<<<<<< HEAD
 This study analyzes demographic shifts in Mobile County from 1950 to the present to assess the persistence of residential segregation. By utilizing decennial census data and spatial analysis, the research examines how structural and historical forces continue to drive spatial inequality in the post–civil rights era.
 
 # Overview
@@ -111,9 +123,44 @@ Interest Convergence: Racial equality is only achieved when the interests of Bla
 # Literature Review
 
 Between 1970-1980, Mobile County saw a significant decline in public school enrollment (approx. 11,500 students), directly correlating with a rise in private school attendance and suburban migration (Pride, 2022). This period highlights a distinct pattern of "white flight" from urban centers to suburban districts.
+=======
+This study analyzes demographic shifts in Mobile County, AL from 1960 to the present to assess the persistence of residential segregation. By utilizing decennial census data and spatial analysis, the research examines how structural and historical forces continue to drive spatial inequality in the post–civil rights era.
+
+# Overview
+
+**White Flight and Segregation**. White flight occurs when white individuals abandon integrated spaces to avoid growing minority populations and stall racial progress. This migration is driven by the desire to protect "whiteness as property," where distancing themselves from other races preserves their social and economic capital (Crowder & South, 2008). In Mobile, desegregation efforts were only made when they protected the elite’s economic interests and established new, spatial forms of white exclusivity (Bell, 1980).
+
+**Segregation Facilitators**.
+
+-   *Whiteness as property*: Whiteness is not just viewed as a racial identity, but as a legal and social asset that operates at a systems level. It posits that European ancestry carries a distinct set of inherent privileges, sociopolitical status, and expectations of entitlement that function as a protected form of property (Donner, 2021).
+-   *Interest Convergence*: Racial equality is achieved when the interests of Black people align with the self-interests of a white majority (Bell, 1980).
+
+# Literature Review
+
+-   Between 1970-1980, Mobile County saw a significant decline in public school enrollment (approx. 11,500 students), directly correlating with a rise in private school attendance and suburban migration (Pride, 2022). This period highlights a distinct pattern of "white flight" from urban centers to suburban districts.
+
+-   Research indicates that white residents often undervalue racially integrated areas due to an "aversion to living near black neighbors" and inflated perceptions of crime (Crowder & South, 2008). These subjective assessments frequently override objective neighborhood quality, driving residential turnover.
+
+## Historical Evolution of Racial Categories
+
+Before 1950, racial classification was determined by census enumerators using externally imposed categories rooted in "color," ancestry, and racial hierarchy (e.g., White, Black, Mulatto). These systems reflected the “one-drop rule” and did not rely on self-identification.
+
+| Decade | Enumeration Method | Key Changes Relevant to Study |
+|--------|------------------|-------------------------------|
+| 1950   | Enumerator       | Race assigned by enumerators; “Negro” used; no “Black” category |
+| 1960   | Mixed (Enumerator + Self-ID) | Transitional system; partial shift toward self-identification |
+| 1970   | Self-identification | First full use of self-identification; “Black” reintroduced |
+| 1980   | Self-identification | Expanded racial categories; terminology reordered (“Black or Negro”) |
+| 1990   | Self-identification | “Race” replaces “Color or Race”; Asian/Pacific categories grouped |
+| 2000   | Self-identification (multi-race allowed) | Respondents can select multiple races; “African American” added |
+| 2010   | Self-identification (multi-race) | Same categories as 2000; clarified race vs. Hispanic origin |
+
+Because racial classification methods and terminology changed over time—particularly the shift from enumerator-assigned race to self-identification—this study standardizes categories into “Black” and “White” to enable longitudinal comparison across census decades.
+>>>>>>> fe31eafa868457d79b3297794f747c832f2950fb
 
 White residents often undervalue racially integrated areas due to an "aversion to living near black neighbors" and inflated perceptions of crime (Crowder & South, 2008). These subjective assessments frequently override objective neighborhood quality, driving residential turnover.
 
+<<<<<<< HEAD
 
 
 # Research Question
@@ -122,61 +169,147 @@ White residents often undervalue racially integrated areas due to an "aversion t
 
 H1: We hypothesize that the index of dissimilarity will show relatively little change (non-significant difference) over the time period examined due to external factors such as urban development, displacement, and gentrification.
 
+=======
+*How have Black and white racial demographics across tracts in Mobile County evolved from 1980-2020?*
+
+## Model
+
+\[
+D = \frac{1}{2} \sum_{i=1}^{n} \left| \frac{b_i}{B} - \frac{w_i}{W} \right|
+\]
+
+where $b_i$ is the population of Black households in neighborhood $i$, $B$ is the total Black population in the geographical area, $w_i$ is the population of non-Black households in neighborhood $i$, $W$ is the total non-Black population in the geographical area.
+
+## Hypothesis
+
+Levels of residential segregation will remain persistently high, reflecting the continued influence of structural factors such as white flight and path-dependent patterns of residential sorting.
+>>>>>>> fe31eafa868457d79b3297794f747c832f2950fb
 
 # Methods and Data
 
-This is some sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.
-
-This is some more sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
+This study uses historical census data from the U.S. Census Bureau to examine changes in Black and white residential distribution across census tracts in Mobile County from 1960 to 2010. Data are analyzed using spatiotemporal demographic mapping, involving longitudinal comparison of tract-level racial composition and the calculation of segregation indices across decennial census years. Our interpretation of observed trends is informed by a Critical Race Theory framework, particularly the concepts of interest convergence and whiteness as property, to contextualize segregation patterns over time.
 
 # Findings
 
-Here is finding 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
-
-Here is finding 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
+![](img/1980-2010-seg.png){width=90%}
 
 ```{r, include=F, warning=F, messages=F}
-# add your data here; note that the code and output are hidden (i.e., include =F)
+library(tidycensus)
+library(dplyr)
+library(sf)
+library(ggplot2)
+library(viridis)
 
-# Create a data frame for the top 10 most populous countries
-countries <- c("India", "China", "United States", "Indonesia", 
-               "Pakistan", "Nigeria", "Brazil", "Bangladesh", 
-               "Russia", "Mexico")
+options(tigris_use_cache = TRUE)
 
-populations <- c(1463870000, 1416100000, 347276000, 285721000, 
-                 255220000, 237528000, 212812000, 175687000, 
-                 147190000, 128271248)
-
-# Combine into a data frame
-population_data <- data.frame(Country = countries, Population = populations)
+race_2020 <- get_acs(
+  geography = "tract",
+  state = "AL",
+  county = "Mobile",
+  year = 2020,
+  variables = c(
+    total = "B02001_001",
+    white = "B02001_002",
+    black = "B02001_003"
+  ),
+  geometry = TRUE
+) %>%
+  select(GEOID, variable, estimate, geometry) %>%
+  tidyr::pivot_wider(names_from = variable, values_from = estimate) %>%
+  mutate(
+    pct_black = black / total
+  )
 ```
 
-```{r, echo=F, warning=F, messages=F}
-# here we will hide the code put include a plot of the data
+```{r, include=F, warning=F, messages=F}
+ggplot(race_2020) +
+  geom_sf(aes(fill = pct_black), color = NA) +
+  scale_fill_viridis_c(
+    option = "magma",
+    labels = scales::percent_format(accuracy = 1)
+  ) +
+  labs(
+    title = "Black Population Share by Census Tract (Mobile County, 2020)",
+    fill = "% Black"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    axis.text = element_blank(),
+    axis.title = element_blank(),
+    panel.grid = element_blank()
+  )
+```
 
-# Create a bar plot using ggplot2
-ggplot(population_data, aes(x = reorder(Country, -Population), y = Population)) +
-  geom_bar(stat = "identity", fill = "steelblue") +
+```{r, include=F, message=F, warning=F}
+library(dplyr)
+
+seg_2020 <- race_2020 %>%
+  mutate(
+    white = white,
+    black = black
+  )
+
+B <- sum(seg_2020$black, na.rm = TRUE)
+W <- sum(seg_2020$white, na.rm = TRUE)
+
+d_2020 <- seg_2020 %>%
+  mutate(
+    black_share = black / B,
+    white_share = white / W,
+    diff = abs(black_share - white_share)
+  ) %>%
+  summarise(D = 0.5 * sum(diff, na.rm = TRUE))
+
+d_2020
+
+d_value <- d_2020$D
+```
+
+```{r, message=F, warning=F}
+ggplot(race_2020) +
+  geom_sf(aes(fill = pct_black), color = NA) +
+  scale_fill_viridis_c(
+  option = "magma",
+  labels = scales::percent_format(accuracy = 1),
+  guide = guide_colorbar(
+    barwidth = 0.7,
+    barheight = 6
+  )
+) +
+  labs(
+    title = "Mobile County, AL (2020)",
+    subtitle = paste0("Index of Dissimilarity = ", round(d_value, 3)),
+    fill = "% Black"
+  ) +
   theme_minimal() +
-  labs(title = "Top 10 Most Populous Countries (2025)", 
-       x = "Countries", y = "Population") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  theme(
+    axis.text = element_blank(),
+    axis.title = element_blank()
+  )
+```
+
+
+```{r}
+
 
 ```
 
-Here is finding 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
 
 # Discussion
 
-Here is a sample citation from the references.bib file. [@alexander2021new]. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
-
 # Conclusion
-
-This is some concluding text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
 
 # Acknowledgements
 
-These are the acknowledgements. This work was supported by funding from the Alfred P. Sloan Foundation (Grant 2023-21062). Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
+This work was supported by funding from the Alfred P. Sloan Foundation (Grant 2023-21062).
 
 # References
 
+<<<<<<< HEAD
+=======
+Crowder, K., & South, S. J. (2008). Spatial dynamics of white flight: The effects of local and extralocal racial conditions on neighborhood out-migration. American sociological review, 73(5), 792-812.
+
+Donnor, J. K. (2021). White fear, White flight, the rules of racial standing and whiteness as property: Why two critical race theory constructs are better than one. Educational Policy, 35(2), 259-273.
+
+Pride, R. A. (2002). The political use of racial narratives: School desegregation in Mobile, Alabama, 1954-97. University of Illinois Press.
+>>>>>>> fe31eafa868457d79b3297794f747c832f2950fb

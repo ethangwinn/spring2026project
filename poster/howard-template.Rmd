@@ -275,8 +275,5 @@ This work was supported by funding from the Alfred P. Sloan Foundation (Grant 20
 
 # References
 
-Crowder, K., & South, S. J. (2008). Spatial dynamics of white flight: The effects of local and extralocal racial conditions on neighborhood out-migration. American sociological review, 73(5), 792-812.
+![]("img/poster qr code.png"){width=90%}
 
-Donnor, J. K. (2021). White fear, White flight, the rules of racial standing and whiteness as property: Why two critical race theory constructs are better than one. Educational Policy, 35(2), 259-273.
-
-Pride, R. A. (2002). The political use of racial narratives: School desegregation in Mobile, Alabama, 1954-97. University of Illinois Press.

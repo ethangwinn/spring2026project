@@ -125,21 +125,7 @@ This study analyzes demographic shifts in Mobile County, AL from 1960 to the pre
 
 -   Research indicates that white residents often undervalue racially integrated areas due to an "aversion to living near black neighbors" and inflated perceptions of crime (Crowder & South, 2008). These subjective assessments frequently override objective neighborhood quality, driving residential turnover.
 
-## Historical Evolution of Racial Categories
 
-Before 1950, racial classification was determined by census enumerators using externally imposed categories rooted in "color," ancestry, and racial hierarchy (e.g., White, Black, Mulatto). These systems reflected the “one-drop rule” and did not rely on self-identification.
-
-| Decade | Enumeration Method | Key Changes Relevant to Study |
-|----------------|--------------------|------------------------------------|
-| 1950 | Enumerator | Race assigned by enumerators; “Negro” used; no “Black” category |
-| 1960 | Mixed (Enumerator + Self-ID) | Transitional system; partial shift toward self-identification |
-| 1970 | Self-identification | First full use of self-identification; “Black” reintroduced |
-| 1980 | Self-identification | Expanded racial categories; terminology reordered (“Black or Negro”) |
-| 1990 | Self-identification | “Race” replaces “Color or Race”; Asian/Pacific categories grouped |
-| 2000 | Self-identification (multi-race allowed) | Respondents can select multiple races; “African American” added |
-| 2010 | Self-identification (multi-race) | Same categories as 2000; clarified race vs. Hispanic origin |
-
-Because racial classification methods and terminology changed over time—particularly the shift from enumerator-assigned race to self-identification—this study standardizes categories into “Black” and “White” to enable longitudinal comparison across census decades.
 
 # Research Questions
 
@@ -160,6 +146,9 @@ Levels of residential segregation will remain persistently high, reflecting the 
 # Methods and Data
 
 This study uses historical census data from the U.S. Census Bureau to examine changes in Black and white residential distribution across census tracts in Mobile County from 1960 to 2010. Data are analyzed using spatiotemporal demographic mapping, involving longitudinal comparison of tract-level racial composition and the calculation of segregation indices across decennial census years. Our interpretation of observed trends is informed by a Critical Race Theory framework, particularly the concepts of interest convergence and whiteness as property, to contextualize segregation patterns over time.
+
+**Limitations**
+A significant limitation was the inability to analyze NHGIS data from 1960, and 1970. Accessing these decades would have provided critical insights into the baseline of segregation before and during the most volatile periods of the Civil Rights Movement and initial court-ordered desegregation.
 
 # Findings
 
@@ -262,7 +251,18 @@ ggplot(race_2020) +
 
 # Discussion
 
+The 11.3% decrease in the Dissimilarity Index between 1980 and 1990 possibly represents a period of transitory diversity,  rather than sustainable integration. As white families abandoned the urban core, census tracts briefly appeared integrated before reverting to new patterns of segregation. 
+
+Our data reveals a disconnect between legal milestones and spatial reality. While MCPSS achieved "unitary" status in 1997 , the 2020 Index of Dissimilarity remains high at 0.552. This suggests that while legal oversight ended, private-sector white flight and path-dependent sorting persisted as mechanisms to maintain racial distance and preserve whiteness as property.
+
+The 1988 Mobile Plan exemplifies Interest Convergence. By establishing elite magnet schools like Council Traditional and Phillips Preparatory, the county incentivized white families—who had withdrawn 11,500 students the prior decade—to remain in the system. This protected “whiteness as property" by offering exclusive educational assets in exchange for technical legal compliance, effectively stalling deeper residential integration. 
+
+The 2020 estimate reflects a "frozen" snapshot. The pandemic stalled residential mobility and disrupted Census operations in high-density tracts. Consequently, the 0.552 index may mask the true contemporary movement of residential sorting, as lockdowns temporarily suppressed the migration patterns our model tracks. 
+
+
 # Conclusion
+
+Our analysis reveals that residential segregation in Mobile County is a persistent structural force. To deepen this understanding, future research should extend the longitudinal dataset to 1950 and introduce qualitative interviews to capture the lived experiences and oral histories that quantitative data alone cannot reveal. 
 
 # Acknowledgements
 

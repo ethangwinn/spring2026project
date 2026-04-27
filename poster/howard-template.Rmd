@@ -149,6 +149,8 @@ Because racial classification methods and terminology changed over time—partic
 D = \frac{1}{2} \sum_{i=1}^{n} \left| \frac{b_i}{B} - \frac{w_i}{W} \right|
 \]
 
+where $b_i$ is the population of Black households in neighborhood $i$, $B$ is the total Black population in the geographical area, $w_i$ is the population of non-Black households in neighborhood $i$, $W$ is the total non-Black population in the geographical area.
+
 ## Hypothesis
 
 Levels of residential segregation will remain persistently high, reflecting the continued influence of structural factors such as white flight and path-dependent patterns of residential sorting.

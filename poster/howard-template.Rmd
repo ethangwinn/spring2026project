@@ -152,6 +152,40 @@ A significant limitation was the inability to analyze NHGIS data from 1960, and 
 
 # Findings
 
+```{r, include=F, message=F, warning=F}
+race2_1980 <- readRDS("data/1980_race_map.rds")
+glimpse(race2_1980)
+```
+
+```{r, message=F, warning=F}
+ggplot(race2_1980) +
+  geom_sf(aes(fill = pct_black), color = NA) +
+  scale_fill_viridis_c(
+    option = "magma",
+    limits = c(0, 1),
+    labels = scales::percent_format(accuracy = 1),
+    guide = guide_colorbar(
+      barwidth = 0.7,
+      barheight = 6
+    )
+  ) +
+  labs(
+    title = "Mobile County, AL (1980)",
+    subtitle = "Index of Dissimilarity = 0.771",
+    fill = "% Black"
+  ) +
+  coord_sf(expand = FALSE) +
+  theme_minimal() +
+  theme(
+    axis.text = element_blank(),
+    axis.title = element_blank(),
+    legend.position = "right",
+    legend.box = "vertical",
+    plot.margin = margin(5, 5, 5, 5)
+  )
+```
+
+
 ![](img/1980-2010-seg.png){width="90%"}
 
 ```{r, include=F, warning=F, messages=F}
@@ -230,6 +264,36 @@ d_value <- d_2020$D
 ggplot(race_2020) +
   geom_sf(aes(fill = pct_black), color = NA) +
   scale_fill_viridis_c(
+    option = "magma",
+    limits = c(0, 1),
+    labels = scales::percent_format(accuracy = 1),
+    guide = guide_colorbar(
+      barwidth = 0.7,
+      barheight = 6
+    )
+  ) +
+  labs(
+    title = "Mobile County, AL (2020)",
+    subtitle = paste0("Index of Dissimilarity = ", round(d_value, 3)),
+    fill = "% Black"
+  ) +
+  coord_sf(expand = FALSE) +
+  theme_minimal() +
+  theme(
+    axis.text = element_blank(),
+    axis.title = element_blank(),
+    legend.position = "right",
+    legend.box = "vertical",
+    plot.margin = margin(5, 5, 5, 5)
+  )
+
+```
+
+```{r, eval=F, message=F, warning=F}
+# removing old 2020 map so that it matches the 1980s map
+ggplot(race_2020) +
+  geom_sf(aes(fill = pct_black), color = NA) +
+  scale_fill_viridis_c(
   option = "magma",
   labels = scales::percent_format(accuracy = 1),
   guide = guide_colorbar(
@@ -259,7 +323,6 @@ The 1988 Mobile Plan exemplifies Interest Convergence. By establishing elite mag
 
 The 2020 estimate reflects a "frozen" snapshot. The pandemic stalled residential mobility and disrupted Census operations in high-density tracts. Consequently, the 0.552 index may mask the true contemporary movement of residential sorting, as lockdowns temporarily suppressed the migration patterns our model tracks. 
 
-
 # Conclusion
 
 Our analysis reveals that residential segregation in Mobile County is a persistent structural force. To deepen this understanding, future research should extend the longitudinal dataset to 1950 and introduce qualitative interviews to capture the lived experiences and oral histories that quantitative data alone cannot reveal. 
@@ -270,5 +333,5 @@ This work was supported by funding from the Alfred P. Sloan Foundation (Grant 20
 
 # References
 
-![](img/qr-code.png){width=90%}
+![](img/qr-code.png){width=50%}
 

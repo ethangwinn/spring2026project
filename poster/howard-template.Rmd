@@ -106,6 +106,24 @@ pagedown::chrome_print(
 
 # Abstract
 
+<<<<<<< HEAD
+This study analyzes demographic shifts in Mobile County from 1950 to the present to assess the persistence of residential segregation. By utilizing decennial census data and spatial analysis, the research examines how structural and historical forces continue to drive spatial inequality in the post–civil rights era.
+
+# Overview
+
+White flight occurs when white individuals abandon integrated spaces to avoid growing minority populations and stall racial progress. This migration is driven by the desire to protect "whiteness as property," where distancing themselves from other races preserves their social and economic capital. (Crowder & South, 2008) In Mobile, desegregation served interest convergence: civil rights concessions were only made when they protected the elite’s economic interests and established new, spatial forms of white exclusivity. (Bell, 1980)
+
+Segregation Facilitators
+
+Whiteness as property: Whiteness is not just as a racial identity, but as a legal and social asset. It posits that European ancestry carries a distinct set of inherent privileges, sociopolitical status, and expectations of entitlement that function as a protected form of property. (Donner, 2021)
+
+Interest Convergence: Racial equality is only achieved when the interests of Black people align with the self-interests of the white majority.  (Bell, 1980)
+
+
+# Literature Review
+
+Between 1970-1980, Mobile County saw a significant decline in public school enrollment (approx. 11,500 students), directly correlating with a rise in private school attendance and suburban migration (Pride, 2022). This period highlights a distinct pattern of "white flight" from urban centers to suburban districts.
+=======
 This study analyzes demographic shifts in Mobile County, AL from 1960 to the present to assess the persistence of residential segregation. By utilizing decennial census data and spatial analysis, the research examines how structural and historical forces continue to drive spatial inequality in the post–civil rights era.
 
 # Overview
@@ -138,9 +156,20 @@ Before 1950, racial classification was determined by census enumerators using ex
 | 2010   | Self-identification (multi-race) | Same categories as 2000; clarified race vs. Hispanic origin |
 
 Because racial classification methods and terminology changed over time—particularly the shift from enumerator-assigned race to self-identification—this study standardizes categories into “Black” and “White” to enable longitudinal comparison across census decades.
+>>>>>>> fe31eafa868457d79b3297794f747c832f2950fb
 
-# Research Questions
+White residents often undervalue racially integrated areas due to an "aversion to living near black neighbors" and inflated perceptions of crime (Crowder & South, 2008). These subjective assessments frequently override objective neighborhood quality, driving residential turnover.
 
+<<<<<<< HEAD
+
+
+# Research Question
+
+1. How have Black and white racial demographics across census tracts in Mobile County evolved from 1950-2020?
+
+H1: We hypothesize that the index of dissimilarity will show relatively little change (non-significant difference) over the time period examined due to external factors such as urban development, displacement, and gentrification.
+
+=======
 *How have Black and white racial demographics across tracts in Mobile County evolved from 1980-2020?*
 
 ## Model
@@ -154,6 +183,7 @@ where $b_i$ is the population of Black households in neighborhood $i$, $B$ is th
 ## Hypothesis
 
 Levels of residential segregation will remain persistently high, reflecting the continued influence of structural factors such as white flight and path-dependent patterns of residential sorting.
+>>>>>>> fe31eafa868457d79b3297794f747c832f2950fb
 
 # Methods and Data
 
@@ -275,8 +305,11 @@ This work was supported by funding from the Alfred P. Sloan Foundation (Grant 20
 
 # References
 
+<<<<<<< HEAD
+=======
 Crowder, K., & South, S. J. (2008). Spatial dynamics of white flight: The effects of local and extralocal racial conditions on neighborhood out-migration. American sociological review, 73(5), 792-812.
 
 Donnor, J. K. (2021). White fear, White flight, the rules of racial standing and whiteness as property: Why two critical race theory constructs are better than one. Educational Policy, 35(2), 259-273.
 
 Pride, R. A. (2002). The political use of racial narratives: School desegregation in Mobile, Alabama, 1954-97. University of Illinois Press.
+>>>>>>> fe31eafa868457d79b3297794f747c832f2950fb

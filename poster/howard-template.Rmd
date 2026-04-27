@@ -161,7 +161,7 @@ This study uses historical census data from the U.S. Census Bureau to examine ch
 
 # Findings
 
-![](img/1980-2010-seg.png){width=90%}
+![Time series trend](img/1980-2010-seg.png){width=90%}
 
 ```{r, include=F, warning=F, messages=F}
 library(tidycensus)
